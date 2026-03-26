@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100..900&display=swap');
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+  --color-sand: #F4F1EB;
+  --color-orange: #E85D38;
+  --color-navy: #1A2B4C;
+  --color-forest: #2C5545;
+}
+
+@layer base {
+  body {
+    @apply bg-sand text-navy font-sans selection:bg-orange selection:text-white;
+    position: relative;
+  }
+
+  /* Film Grain Overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+.tactile-button {
+  @apply relative inline-flex items-center justify-center px-8 py-4 font-semibold text-white transition-all duration-300 bg-orange rounded-lg shadow-[0_4px_0_0_rgba(0,0,0,0.2)] active:shadow-none active:translate-y-1 hover:brightness-110;
+}
+
+.tactile-button-navy {
+  @apply relative inline-flex items-center justify-center px-8 py-4 font-semibold text-sand transition-all duration-300 bg-navy rounded-lg shadow-[0_4px_0_0_rgba(0,0,0,0.2)] active:shadow-none active:translate-y-1 hover:brightness-110;
+}
+
+.polaroid-card {
+  @apply bg-white p-4 shadow-xl transform transition-transform duration-500 hover:scale-105;
+  border-bottom: 24px solid white;
+}
+
+.risograph-map {
+  background-color: #e5e7eb;
+  background-image: radial-gradient(#1A2B4C 0.5px, transparent 0.5px);
+  background-size: 10px 10px;
+}
