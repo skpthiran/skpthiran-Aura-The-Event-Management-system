@@ -2,7 +2,7 @@ name: Deploy Aura to Pages
 
 on:
   push:
-    branches: ["main"] # This triggers every time you push code
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -15,19 +15,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          # REMOVED the cache line to prevent the error
+
       - name: Install dependencies
         run: npm install
+
       - name: Build
         run: npm run build
+
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Vite puts the finished site here
+          path: './dist'
 
   deploy:
     needs: build_site
